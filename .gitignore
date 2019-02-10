@@ -7,3 +7,5 @@ handson-ml
 __pycache__
 .DS_Store
 .ipynb_checkpoints
+.vscode
+
