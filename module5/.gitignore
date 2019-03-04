@@ -1,0 +1,8 @@
+# Professor's starter notebook
+CAP6618_PP3.ipynb
+
+# Python code we can download from place pointed to in the notebook
+*.py
+
+# Dataset we can download from the place pointed to in the notebook
+*.gz
