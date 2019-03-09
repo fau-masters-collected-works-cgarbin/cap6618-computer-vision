@@ -6,3 +6,7 @@ CAP6618_PP3.ipynb
 
 # Dataset we can download from the place pointed to in the notebook
 *.gz
+
+# Keras models
+*.h5
+
