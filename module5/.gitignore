@@ -10,3 +10,6 @@ CAP6618_PP3.ipynb
 # Keras models
 *.h5
 
+# Except for the network used in the analysis part of the notebook
+!lenet-like-with-dropout-early-stopping.h5
+
