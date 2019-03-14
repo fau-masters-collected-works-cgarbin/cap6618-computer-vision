@@ -11,5 +11,5 @@ CAP6618_PP3.ipynb
 *.h5
 
 # Except for the network used in the analysis part of the notebook
-!lenet-like-with-dropout-early-stopping.h5
+!lenet-like-batch-normalization-relu.h5
 
