@@ -7,7 +7,7 @@ Folders names `tfjs-tutorial-...` are some of the [official tutorials](https://w
 All tutorials are configured to run with Node.js and npm.
 
 We will run all examples locally, including the TensorFlow.js library itself.
-Do that we need to make two changes to the exmaples.
+To do that we need to make two changes to the exmaples.
 
 First, install the libraries locally:
 
@@ -21,5 +21,6 @@ Then, replace the `script` entries in `index.htlm` to point to the local files:
         ...
         <script src="./node_modules/@tensorflow/tfjs-vis/dist/tfjs-vis.umd.min.js"></script>
 
-You may want to use an auto-reload server, such as [live-server](https://www.npmjs.com/package/live-server)
-to speed up the development cycle
+If you plan to modify the code, you may want to use an auto-reload server,
+such as [live-server](https://www.npmjs.com/package/live-server) to speed up
+the development cycle.
