@@ -7,7 +7,7 @@ This folder has a full working version of TensorFlow.js
 1. Run `npm install` to install the modules we need
 1. Open `index.html` on a browser window
 
-Optional: if you plan to modify and play with the code, install `live-server``
+Optional: if you plan to modify and play with the code, install `live-server`
 to automatically reload the browser window when the code is changed.
 
 1. `npm install -g live-server`
