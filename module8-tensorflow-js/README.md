@@ -11,7 +11,7 @@ To do that we need to make two changes to the exmaples.
 
 First, install the libraries locally:
 
--   `cd` to the project directory
+-   `cd` to the tutorial directory
 -   Run `npm install` to install the modules listed in `package.json`, which
     includes the TensorFlow.js modules we need.
 
