@@ -1,0 +1,17 @@
+{
+  "name": "tfjs-tutorial-digit-recognition",
+  "version": "1.0.0",
+  "description": "TensorFlow.js digit recognition tutorial",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@tensorflow/tfjs": "^1.1.0",
+    "@tensorflow/tfjs-vis": "^1.0.3",
+    "eslint": "^5.16.0",
+    "prettier": "^1.17.0"
+  }
+}
