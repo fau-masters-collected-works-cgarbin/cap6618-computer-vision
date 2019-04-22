@@ -1,0 +1,19 @@
+{
+  "name": "tfjs-tutorial-transfer-learn-digit",
+  "version": "1.0.0",
+  "description": "TensorFlow.js transfer learn for images tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@tensorflow-models/knn-classifier": "^1.0.0",
+    "@tensorflow-models/mobilenet": "^1.0.0",
+    "@tensorflow/tfjs": "^1.1.0",
+    "@tensorflow/tfjs-vis": "^1.0.3",
+    "eslint": "^5.16.0",
+    "prettier": "^1.17.0"
+  }
+}
