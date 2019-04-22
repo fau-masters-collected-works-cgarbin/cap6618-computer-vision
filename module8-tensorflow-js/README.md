@@ -11,9 +11,10 @@ All tutorials are configured to run with Node.js and npm.
 We will run all examples locally, including the TensorFlow.js library itself.
 To do that we need to install the modules locally.
 
--   Install [Node.js](https://nodejs.org/)
--   Install [live-server](https://www.npmjs.com/package/live-server) to act as a local web server (with auto-reload)
--   `cd` to the tutorial directory
+-   Install [Node.js](https://nodejs.org/).
+-   Install [live-server](https://www.npmjs.com/package/live-server) to act as
+    a local web server (with auto-reload).
+-   `cd` to a tutorial directory
 -   Run `npm install` to install the modules listed in `package.json`, which
     includes the TensorFlow.js modules we need.
--   Run `live-server` to open a browser and load `index.html`
+-   Run `live-server` to open a browser and load `index.html`.
