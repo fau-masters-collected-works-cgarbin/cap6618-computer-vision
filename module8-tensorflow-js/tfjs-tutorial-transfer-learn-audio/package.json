@@ -1,0 +1,17 @@
+{
+    "name": "tfjs-tutorial-transfer-learn-audio",
+    "version": "1.0.0",
+    "description": "TensorFlow.js transfer learn for audio",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "@tensorflow-models/speech-commands": "^0.3.5",
+        "@tensorflow/tfjs": "^1.0.4",
+        "eslint": "^5.16.0",
+        "prettier": "^1.17.0"
+    }
+}
