@@ -55,6 +55,25 @@ These are some of the restrictions for a program running inside a browser:
 
 ## Development environment
 
+The major differences in the development environment are related to the first
+item in the environment differences: the program does not have access to the
+file system.
+
+That plays a role from the start of the development process. This is the usual
+beginning of a Python TensorFlow program:
+
+    import tensorflow
+
+This line results in loading the TensorFlow library files from the local disk
+into the runtime environment. However, a program running inside the browser
+does not have access to the local disk. It must load the libraries in a
+different way.
+
+This is the usual beginning of Javascript TensorFlow.js program (there are
+othe ways to import a module in Javascript - the result is similar, though):
+
+    <script src="./node_modules/@tensorflow/tfjs/dist/tf.min.js"></script>
+
 > To develop:
 >
 > -   an editor
