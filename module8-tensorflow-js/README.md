@@ -24,7 +24,8 @@ With that in mind, the items investigated for this report are listed below.
 Most of the code in this report is based on the
 [official tutorials](https://www.tensorflow.org/js/tutorials). The tutorials
 have been converted in complete, running examples. They are saved in the
-folders named `tfjs-tutorial-...`.
+folders named `tfjs-tutorial-...` (in [this GitHub repository](https://github.com/cgarbin/cap6618-computer-vision/tree/master/module8-tensorflow-js),
+if you are reading this report outside of GitHub).
 
 This report is structured as follows:
 
