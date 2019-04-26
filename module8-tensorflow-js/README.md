@@ -14,13 +14,15 @@ differences in the development environment and the runtime environment.
 
 With that in mind, the items investigated for this report are listed below.
 
+> TODO: review these steps once the sections are written.
+
 1. The differences between the TensorFlow.js environment and the typical
    machine learning environment.
 1. How to setup a productive development environment for TensorFlow.js.
 1. What are the differences in the runtime environment, compared to having
    access to the entire computer's environment.
 1. What are the learning resources to get up to speed quickly, asssuming
-   previous experience with TensorFlow and Keras, but not with Javascript and
+   previous experience with TensorFlow and Keras, but not with JavaScript and
    TensorFlow.js.
 
 The following sections in the report cover each item of the list.
@@ -69,8 +71,8 @@ into the runtime environment. However, a program running inside the browser
 does not have access to the local disk. It must load the libraries in a
 different way.
 
-This is the usual beginning of Javascript TensorFlow.js program (there are
-other ways to import a module in Javascript - the result is similar, though):
+This is the usual beginning of a JavaScript TensorFlow.js program (there are
+other ways to import a module in JavaScript - the result is similar, though):
 
     <script src="./node_modules/@tensorflow/tfjs/dist/tf.min.js"></script>
 
@@ -89,7 +91,7 @@ better alternative. It has several useful modules that speed up the workflow.
 
 One of these useful modules is [live-server](https://www.npmjs.com/package/live-server),
 a module that automates another difference in the environment: running the
-Javascript code requires reloading the web page every time any change is made.
+JavaScript code requires reloading the web page every time any change is made.
 [live-server](https://www.npmjs.com/package/live-server) is a web server that
 automatically reloads the page when a file changes. Sounds like a small detail,
 but manually reloading pages can quickly become time consuming in the
@@ -100,7 +102,34 @@ write code, test code, and (inevitably) debug code.
 
 In the follow in sections we will put in place a set of tools for these steps.
 
+**NOTE:** Some of the items in these sections are opinions, clouded by the
+biases of the author. Whenever possible, the author explains the reason for
+each choice. You are welcome to try alternatives, keeping in mind the reasons
+for each choice.
+
 ### Write code
+
+JavaScript, as other languages before it, has its [quirks](https://github.com/denysdovhan/wtfjs).
+Some of these quirks will cost time. Code that looks perfectly logical and
+functional will not work as expected.
+
+The best defense against that is to have a good code editor, backed by good
+code analysis tools.
+
+-   Editor: [Visual Studio Code](https://code.visualstudio.com/) is a free
+    editor with has a large collection of plugins. Some of them are listed in
+    the items below.
+-   Code analysis ([linting](<https://en.wikipedia.org/wiki/Lint_(software)>)):
+    it takes time to learn all the subtleties of a new language, and JavaScript
+    is not short of them. Some of these subtleties will result in frustrating
+    bugs. As a good practice, always have a code analysis tool automatically
+    running. [eslint](<https://en.wikipedia.org/wiki/Lint_(software)>) is the
+    best linting tool for JavaScript and is available as a plugin for Visual
+    Studio Code.
+-   Code formattting: keep the code consistent and easier to understand. Also
+    prepares it for publication, e.g. in GitHub. [prettier](https://prettier.io/)
+    is currently the most used formatter. Also available as a plugin for Visual
+    Studio Code.
 
 ### Test and debug the code
 
