@@ -1,11 +1,11 @@
-# Learning TensorFlow.js
+# Machine learning in a constrained environment - TensorFlow.js
 
 The goal of this work is to understand how to work with machine learning in a
 constrained environment. In this context, "constrained environment" is in
 comparison with having access to the entire computer's environment.
 
 To do that, we chose to learn more about TensorFlow.js running inside a
-browser (it can also run on the server, with Node.js, but this is outside of
+browser (it can also run on a server, with Node.js, but this is outside of
 the scope of this work).
 
 This report is written from the point of view of someone who has some machine
@@ -30,7 +30,7 @@ Most of the code in this report is based on the
 have been converted in complete, running examples. They are saved in the
 folders named `tfjs-tutorial-...` (in [this GitHub repository](https://github.com/cgarbin/cap6618-computer-vision/tree/master/module8-tensorflow-js),
 if you are reading this report outside of GitHub). All tutorials are configured
-to run with Node.js and npm. Please see the development environment section
+to run locally with Node.js. Please see the development environment section
 below to get the environment up and running.
 
 ## Environment differences
@@ -70,15 +70,65 @@ does not have access to the local disk. It must load the libraries in a
 different way.
 
 This is the usual beginning of Javascript TensorFlow.js program (there are
-othe ways to import a module in Javascript - the result is similar, though):
+other ways to import a module in Javascript - the result is similar, though):
 
     <script src="./node_modules/@tensorflow/tfjs/dist/tf.min.js"></script>
 
-> To develop:
->
-> -   an editor
-> -   a test environment
-> -   debuggers: vstudio Chrome debugger, Chrome dev console, tfjs viz
+The progream cannot directly access that file. Instead, it will ask a web
+server to serve the file.
+
+> > pic with a web server between the browser and the file system
+
+Therefore, the development environment needs a web server. There are several
+alternatives. For simple tests, Python's [http.server](https://docs.python.org/3/library/http.server.html)
+is enough ([SimpleHTTPServer](https://docs.python.org/2/library/simplehttpserver.html)
+for Python 2).
+
+For more complex development work, [Node.js](https://nodejs.org/en/) is a
+better alternative. It has several useful modules that speed up the workflow.
+
+One of these useful modules is [live-server](https://www.npmjs.com/package/live-server),
+a module that automates another difference in the environment: running the
+Javascript code requires reloading the web page every time any change is made.
+[live-server](https://www.npmjs.com/package/live-server) is a web server that
+automatically reloads the page when a file changes. Sounds like a small detail,
+but manually reloading pages can quickly become time consuming in the
+development workflow.
+
+Once a web server is in place, we can start the typical development workflow:
+write code, test the code, and (inevitably) debug the code.
+
+In the follow in sections we will put in place a set of tools for these steps.
+
+### Write code
+
+### Test and debug the code
+
+### Putting it all together
+
+-   Develop models in a faster, easier to debug environment (e.g. Python)
+-   Export model to TensorFlow.js
+-   Run final tests in TensorFlow.js
+
+## Runtime environment
+
+> Can't control what brower is used
+> Could even be mobile phone browser
+> What model to use to cover all cases? Should use MobileNet or try to
+> determine the browser and serve a different model?
+
+## Production environment
+
+The sections above cover the development workflow. For a production
+environment, where models are released to the end users, we need a few more
+steps.
+
+-   Minimize the code
+-   Package (expand this...)
+
+There are tools to automated those steps. A good start is [webpack](link here).
+
+## Old - remove later
 
 All tutorials are configured to run with Node.js and npm.
 
@@ -92,3 +142,9 @@ To do that we need to install the modules locally.
 -   Run `npm install` to install the modules listed in `package.json`, which
     includes the TensorFlow.js modules we need.
 -   Run `live-server` to open a browser and load `index.html`.
+
+## Appendix
+
+### Loading TensorFlow.js from a content delivery network (CDN)
+
+> Explain loading TF from a CDN, as used in the tutorials
