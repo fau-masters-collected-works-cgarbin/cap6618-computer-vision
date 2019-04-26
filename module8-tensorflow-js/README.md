@@ -5,8 +5,10 @@ constrained environment. In this context, "constrained environment" is in
 comparison with having access to the entire computer's environment.
 
 To do that, we chose to learn more about TensorFlow.js running inside a
-browser (it can also run on a server, with Node.js, but this is outside of
-the scope of this work).
+browser. TensorFlow.js can also run on the server (e.g. with [Node.js](https://nodejs.org/en/),
+but this is outside of the scope of this document. Here we will concentrate on
+a constrained environment, the browser, and how it is different from developing
+code directly on a computer.
 
 This report is written from the point of view of someone who has some machine
 learning experience with Ptyhon, TensorFlow and Keras. It highlights
@@ -16,8 +18,8 @@ With that in mind, the items investigated for this report are listed below.
 
 > TODO: review these steps once the sections are written.
 
-1. The differences between the TensorFlow.js environment and the typical
-   machine learning environment.
+1. The differences between the TensorFlow.js environment on a browser and the
+   typical machine learning environment.
 1. How to setup a productive development environment for TensorFlow.js.
 1. What are the differences in the runtime environment, compared to having
    access to the entire computer's environment.
@@ -107,7 +109,7 @@ biases of the author. Whenever possible, the author explains the reason for
 each choice. You are welcome to try alternatives, keeping in mind the reasons
 for each choice.
 
-### Write code
+### Writing code
 
 JavaScript, as other languages before it, has its [quirks](https://github.com/denysdovhan/wtfjs).
 Some of these quirks will cost time. Code that looks perfectly logical and
@@ -131,10 +133,25 @@ code analysis tools.
     is currently the most used formatter. Also available as a plugin for Visual
     Studio Code.
 
-### Test and debug the code
+### Testing and debugging the code
 
-### Putting it all together
+This section focuses on Chrome. Other browsers have similar tools in place.
 
+There are two ways to debug JavaScript code running on the browser:
+
+-   Directly on the browser with [Chrome DevTools' JavaScript debugger](https://developers.google.com/web/tools/chrome-devtools/javascript/).
+-   From Visual Studio Code with the [Chrome Debugger](https://github.com/Microsoft/vscode-chrome-debug).
+
+The first option is the easiest to start with. The second option has more
+features and is more useful in the long run, despite requiring a (minor)
+configuration step to get started.
+
+TensorFlow.js also comes with a visualization tool, [tfjs-vis](https://github.com/tensorflow/tfjs-vis).
+With tfjs-vis we can follow the code behavior in real time. See [this example](https://storage.googleapis.com/tfjs-vis/mnist/dist/index.html).
+
+## Development workflow
+
+-   Don't have access to the disk, so training can't local images locally
 -   Develop models in a faster, easier to debug environment (e.g. Python)
 -   Export model to TensorFlow.js
 -   Run final tests in TensorFlow.js
