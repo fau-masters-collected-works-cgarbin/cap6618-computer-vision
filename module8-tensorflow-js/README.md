@@ -74,7 +74,7 @@ other ways to import a module in Javascript - the result is similar, though):
 
     <script src="./node_modules/@tensorflow/tfjs/dist/tf.min.js"></script>
 
-The progream cannot directly access that file. Instead, it will ask a web
+The program cannot directly access that file. Instead, it will ask a web
 server to serve the file.
 
 > > pic with a web server between the browser and the file system
@@ -96,7 +96,7 @@ but manually reloading pages can quickly become time consuming in the
 development workflow.
 
 Once a web server is in place, we can start the typical development workflow:
-write code, test the code, and (inevitably) debug the code.
+write code, test code, and (inevitably) debug code.
 
 In the follow in sections we will put in place a set of tools for these steps.
 
