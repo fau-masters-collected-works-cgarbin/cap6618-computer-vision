@@ -126,12 +126,12 @@ code analysis tools.
     is not short of them. Some of these subtleties will result in frustrating
     bugs. As a good practice, always have a code analysis tool automatically
     running. [eslint](<https://en.wikipedia.org/wiki/Lint_(software)>) is the
-    best linting tool for JavaScript and is available as a plugin for Visual
-    Studio Code.
+    best linting tool for JavaScript and is available as an extension for
+    Visual Studio Code.
 -   Code formattting: keep the code consistent and easier to understand. Also
     prepares it for publication, e.g. in GitHub. [prettier](https://prettier.io/)
-    is currently the most used formatter. Also available as a plugin for Visual
-    Studio Code.
+    is currently the most used formatter. Also available as an extension for
+    Visual Studio Code.
 
 ### Testing and debugging the code
 
@@ -148,6 +148,20 @@ configuration step to get started.
 
 TensorFlow.js also comes with a visualization tool, [tfjs-vis](https://github.com/tensorflow/tfjs-vis).
 With tfjs-vis we can follow the code behavior in real time. See [this example](https://storage.googleapis.com/tfjs-vis/mnist/dist/index.html).
+
+### Putting it all together
+
+Putting all pieces together to get the development environment in place:
+
+-   Install [Node.js](https://nodejs.org/en/) and its [liver-server](https://www.npmjs.com/package/live-server)
+    to serve the files to the code running inside the browser (and to
+    automatically refresh the page when code changes).
+-   Install [Visual Studio Code](https://code.visualstudio.com/).
+-   Install Visual Studio Code extensions for a linter ([eslint](https://eslint.org/))
+    and for a code formatter ([prettier](https://prettier.io/)).
+-   Learn how to use [Chrome DevTools' JavaScript debugger](https://developers.google.com/web/tools/chrome-devtools/javascript/).
+-   Learn how to use [Visual Studio Code's Chrome debugger](https://github.com/Microsoft/vscode-chrome-debug).
+-   Learn how to use real-time visualization with [tfjs-vis](https://github.com/tensorflow/tfjs-vis).
 
 ## Development workflow
 
