@@ -153,7 +153,7 @@ With tfjs-vis we can follow the code behavior in real time. See [this example](h
 
 Putting all pieces together to get the development environment in place:
 
--   Install [Node.js](https://nodejs.org/en/) and the [liver-server](https://www.npmjs.com/package/live-server)
+-   Install [Node.js](https://nodejs.org/en/) and the [live-server](https://www.npmjs.com/package/live-server)
     package to serve the files to the code running inside the browser (and to
     automatically refresh the page when code changes).
 -   Install [Visual Studio Code](https://code.visualstudio.com/).
