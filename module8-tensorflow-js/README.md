@@ -86,6 +86,10 @@ server to serve the file.
 
 > > pic with a web server between the browser and the file system
 
+<!---
+Use mermaid for the pic
+-->
+
 Therefore, the development environment needs a web server. There are several
 alternatives. For simple tests, Python's [http.server](https://docs.python.org/3/library/http.server.html)
 is enough ([SimpleHTTPServer](https://docs.python.org/2/library/simplehttpserver.html)
@@ -203,7 +207,7 @@ Model conversion is done with [`tensorflowjs_converter`](https://www.tensorflow.
 However, there are some catches:
 
 1. Not all models can be converted. The converter is being improved, but it is
-   not able to convert all models.
+   not able to convert all models yet.
 1. Some optimizations for size and performance do not affect the model, but to
    reduce the model size we need to use [quantization](https://medium.com/tensorflow/introducing-the-model-optimization-toolkit-for-tensorflow-254aca1ba0a3).
    Quantization may affect accuracy. It requires at least another verification
@@ -215,11 +219,11 @@ problems as early as possible.
 1.  Train the model for a few epochs only (at this point it doesn't matter if
     the model is accurate).
 1.  Save the model.
-1.  Attempt to convert it using [tfjs-converter](https://github.com/tensorflow/tfjs-converter).
+1.  Attempt to convert it using [tensorflowjs_converter](https://github.com/tensorflow/tfjs-converter).
 
 If conversion works, resume the usual training process to achieve high
 accuracy (or F1 score, or other applicable metric). The goal up to this point
-was just to check if there are no errors in the conversion, beffore committing
+is just to check if there are no errors in the conversion, beffore committing
 to long training times, just to realize the model cannot be converted.
 
 Once the model is trained, we can quantize it. The goal in this step is to
@@ -227,7 +231,7 @@ reduce the model size. However, there are two levels of quantization and they
 may affect accuracy in different ways. Another verification step is
 therefore needed.
 
-1. Convert the model again with [tfjs-converter](https://github.com/tensorflow/tfjs-converter),
+1. Convert the model again with [tensorflowjs_converter](https://github.com/tensorflow/tfjs-converter),
    this time specifying `quantization_bytes`.
 1. Check the converted model's accuracy (e.g. with the test dataset).
 1. Repeat for different values of `quantization_bytes` (two values are
