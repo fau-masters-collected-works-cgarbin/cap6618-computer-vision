@@ -7,7 +7,7 @@ comparison with having access to the entire computer's environment.
 To do that, we chose to learn more about TensorFlow.js running inside a
 browser.
 
-TensorFlow.js can also run on the server (e.g. with [Node.js](https://www.tensorflow.org/js/guide/nodejs)),
+TensorFlow.js can also run on a server (e.g. with [Node.js](https://www.tensorflow.org/js/guide/nodejs)),
 but this is outside of the scope of this document. Here we will concentrate on
 a constrained environment, the browser, and how it is different from developing
 code directly on a computer.
@@ -21,7 +21,7 @@ With that in mind, the items investigated for this report are listed below.
 
 > TODO: review these steps once the sections are written.
 
-1. The differences between the TensorFlow.js environment on a browser and the
+1. The differences between the TensorFlow.js environment in a browser and the
    typical machine learning environment.
 1. How to set up a productive development environment for TensorFlow.js.
 1. What are the differences in the runtime environment, compared to having
@@ -145,9 +145,9 @@ code analysis tools.
 
 This section focuses on Chrome. Other browsers have similar tools in place.
 
-There are two ways to debug JavaScript code running on the browser:
+There are two ways to debug JavaScript code running in the browser:
 
--   Directly on the browser with [Chrome DevTools' JavaScript debugger](https://developers.google.com/web/tools/chrome-devtools/javascript/).
+-   Directly in the browser with [Chrome DevTools' JavaScript debugger](https://developers.google.com/web/tools/chrome-devtools/javascript/).
 -   From Visual Studio Code with the [Chrome Debugger](https://github.com/Microsoft/vscode-chrome-debug).
 
 The first option is the easiest to start with. The second option has more
@@ -268,14 +268,14 @@ TensorFlow.js is more effective in the long run.
 
 ### Using pretrained models as a starting point
 
-TensorFlow.js has a [repository of pretrained model](https://github.com/tensorflow/tfjs-models).
+TensorFlow.js has a [repository of pretrained models](https://github.com/tensorflow/tfjs-models).
 
 They are a good starting pointing because not only they are pretrained, but
 they are also already converted, so the risk of failing at the conversion step
 is gone if you use the model as is, or greatly reduced if you use the model
 for transfer learning.
 
-Using one of the pretrained model with transfer requires a few adjustments to
+Using one of the pretrained models with transfer requires a few adjustments to
 the workflow. Transfer learning also implies a training step. In this case
 the model is already converted to TensorFlow.js, so the training process needs
 to be done with [Node.js](https://www.tensorflow.org/js/guide/nodejs).
@@ -287,13 +287,17 @@ approach, we can start with a [TensorFlow pretained model](https://github.com/te
 complete the transfer learning process with Python and R, then converted the
 final model to TensorFlow.js.
 
-### Training on the browser
+### Training in the browser
 
-> > For when needed, how to train on the browser
+It is also possible to train a model in the browser. This method may be
+useful for transfer learning and training with small datasets.
 
-### Differences from the standard Keras API
+Running in the browser may also be useful to speed up training in systems that
+do not have a GPU. When running in a browser, TensorFlow.js uses WebGL as the
+backend. This backend is [up to 100x faster than a CPU (non GPU) backend](https://www.tensorflow.org/js/guide/platform_environment#backends).
 
-See https://www.tensorflow.org/js/guide/layers_for_keras_users
+This method has the same caveat as [using Node.js for training](#training-with-nodejs),
+learning Node.js packages to read and manipulate the dataset.
 
 ## Runtime environment
 
@@ -320,7 +324,9 @@ There are tools to automate those steps. A good start is [webpack](link here).
 
 > Explain loading TF from a CDN, as used in the tutorials
 
-### Using TensorFlow.js on a server with Node.js
+### Differences from the standard Keras API
+
+See https://www.tensorflow.org/js/guide/layers_for_keras_users
 
 ## TODOs
 
