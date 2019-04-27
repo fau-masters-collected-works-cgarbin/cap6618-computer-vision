@@ -209,7 +209,37 @@ However, there are some catches:
    Quantization may affect accuracy. It requires at least another verification
    of the model before using it.
 
+With those catches in mind, the workflow requires a few tweaks to catch
+problems as early as possible.
+
+1.  Train the model for a few epochs only (at this point it doesn't matter if
+    the model is accurate).
+1.  Save the model.
+1.  Attempt to convert it using [tfjs-converter](https://github.com/tensorflow/tfjs-converter).
+
+If conversion works, resume the usual training process to achieve high
+accuracy (or F1 score, or other applicable metric). The goal up to this point
+was just to check if there are no errors in the conversion, beffore committing
+to long training times, just to realize the model cannot be converted.
+
+Once the model is trained, we can quantize it. The goal in this step is to
+reduce the model size. However, there are two levels of quantization and they
+may affect accuracy in different ways. Another verification step is
+therefore needed.
+
+1. Convert the model again with [tfjs-converter](https://github.com/tensorflow/tfjs-converter),
+   this time specifying `quantization_bytes`.
+1. Check the converted model's accuracy (e.g. with the test dataset).
+1. Repeat for different values of `quantization_bytes` (two values are
+   currently supported).
+
 ### Workflow overview
+
+Putting all steps together, this is how the workflow looks like.
+
+> > pic here
+
+### Using pretrained models as a starting point
 
 ### Training on the browser
 
@@ -233,9 +263,10 @@ environment, where models are released to the end users, we need a few more
 steps.
 
 -   Minimize the code
--   Package (expand this...)
+-   Package (expand this... - webpack)
+-   Version models to force reloads - see section in Google's caching document
 
-There are tools to automated those steps. A good start is [webpack](link here).
+There are tools to automate those steps. A good start is [webpack](link here).
 
 ## Appendix
 
