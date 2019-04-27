@@ -309,7 +309,7 @@ not knowing how powerful (or weak) the device is has serious implications for
 the choice of model we make.
 
 The main issue we need to address is the behavior of the model in low-powered
-devices, typically a smartphone. Large models may cause two problems in those
+devices, typically a smartphone. Large models may cause three problems in those
 devices:
 
 1.  Battery consumption: more calculations imply more CPU usage, which
@@ -319,12 +319,17 @@ devices:
 1.  Latency: more calculations also imply it takes longer to make predictions.
     Users have expectations on how long they will wait a task to complete. A
     more responsive applications is obviously better.
+1.  Time to download the model: large models take longer to download, of
+    course. This is specially important for smartphone connected via cellular
+    network. Although the browser will cache the model after downloading it,
+    the inital download affects the first use of the application. If it takes
+    too long, users may lose patience and give the first on the first try.
 
 If we know the web application is running on a well-configured laptop, with a
-charged battery (or connected), connected to a Wi-Fi network, we can afford to
-use a more accurate model, more CPU intensive model. On the other, hand if we
-know the application is running on a smartphone connected via cellular network,
-we may need to fallback to a less powerful model, such as a [MobileNet](https://arxiv.org/abs/1704.04861)
+charged battery, connected to a Wi-Fi network, we can afford to use a more
+accurate model, more CPU intensive model. On the other, hand if we know the
+application is running on a smartphone connected via cellular network, we may
+need to fallback to a less powerful model, such as a [MobileNet](https://arxiv.org/abs/1704.04861)
 one, that uses less CPU and has smaller latency.
 
 There are two ways to approach this problem:
