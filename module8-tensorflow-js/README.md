@@ -243,7 +243,44 @@ Putting all steps together, this is how the workflow looks like.
 
 > > pic here
 
+### Training with Node.js
+
+The previous section was written with the assumption that you are familiar and
+comfortable with Python or R. That results in the conversion step in the
+workflow.
+
+It is also possible to train on the server using [Node.js](https://www.tensorflow.org/js/guide/nodejs).
+This method removes the limitations from the browser environment (we are now
+able to access the file system, for example) and give access to GPUs. The
+training performance is [equivalent to using Python and R](https://groups.google.com/a/tensorflow.org/forum/#!topic/tfjs/4qIbyhrDZC0).
+
+However, the actual training loop (model fitting) may be a small part of the
+complete training workflow. Other steps, like preparing a dataset (for example,
+crop images) and augmenting data, may have more code than the actual model
+training part. These steps are significantly different in JavaScript because
+they use other libraries (Node.js packages) to perform those functions.
+
+The main driving force for the decision to use Node.js is if you expect to
+write mostly JavaScript script. If so, learning how to code these ancialiary
+steps in JavaScript is worthwhile. If you plan to stick to Python or R most of
+the time, training in those environment, then converting the trained model to
+TensorFlow.js is more effective in the long run.
+
 ### Using pretrained models as a starting point
+
+TensorFlow.js has a [repository of pretrained model](https://github.com/tensorflow/tfjs-models).
+
+They are a good starting pointing because not only they are pretrained, but
+they are also already converted, so the risk of failing at the conversion step
+is gone if you use the model as is, or greatly reduced if you use the model
+for transfer learning.
+
+Using one of the pretrained model with transfer requires a few adjustments to
+the workflow. Transfer learning also implies a training step. In this case
+the model is already converted to TensorFlow.js, so the training process needs
+to be done with [Node.js](https://www.tensorflow.org/js/guide/nodejs).
+
+Similarly to [#]
 
 ### Training on the browser
 
