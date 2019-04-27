@@ -280,7 +280,11 @@ the workflow. Transfer learning also implies a training step. In this case
 the model is already converted to TensorFlow.js, so the training process needs
 to be done with [Node.js](https://www.tensorflow.org/js/guide/nodejs).
 
-Similarly to [#]
+Similarly to [#training-with-nodejs], using this approach requires learning
+Node.js packages to read and manipulate the dataset used for the transfer
+learning training. As an alternative approach, we can start with a [TensorFlow pretained model](https://github.com/tensorflow/models),
+complete the transfer learning process with Python and R, then converted the
+final model to TensorFlow.js.
 
 ### Training on the browser
 
