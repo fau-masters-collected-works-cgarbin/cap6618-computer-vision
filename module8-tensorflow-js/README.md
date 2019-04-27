@@ -304,16 +304,28 @@ learning Node.js packages to read and manipulate the dataset.
 One characteristic of web applications is that they can run on any type of
 device that has a web browser. This can be a blessing or a curse.
 
-For applications that are CPU intensive, like machine learning, not knowing how
-powerful (or weak) the device is has serious implications for the choice of
-model we make.
+For applications that are CPU intensive, like machine learning applications,
+not knowing how powerful (or weak) the device is has serious implications for
+the choice of model we make.
+
+The main issue we need to address is the behavior of the model in low-powered
+devices, typically a smartphone. Large models may cause two problems in those
+devices:
+
+1.  Battery consumption: more calculations imply more CPU usage, which
+    implies more battery consumption. One way to make users of smartphones
+    unhappy to the point where they give up on your application is to consume
+    a lot of battery.
+1.  Latency: more calculations also imply it takes longer to make predictions.
+    Users have expectations on how long they will wait a task to complete. A
+    more responsive applications is obviously better.
 
 If we know the web application is running on a well-configured laptop, with a
 charged battery (or connected), connected to a Wi-Fi network, we can afford to
-use a more accurate model. On the other, hand if we know the application is
-running on a smartphone connected via cellular network, we may need to fallback
-to a less powerful model, such as a [MobileNet](https://arxiv.org/abs/1704.04861)
-one.
+use a more accurate model, more CPU intensive model. On the other, hand if we
+know the application is running on a smartphone connected via cellular network,
+we may need to fallback to a less powerful model, such as a [MobileNet](https://arxiv.org/abs/1704.04861)
+one, that uses less CPU and has smaller latency.
 
 There are two ways to approach this problem:
 
