@@ -357,7 +357,7 @@ browsers).
 These are some of the best practices for web development in general, not only
 for deploying machine learning models in that environment.
 
--   [Minify code and resources](https://developers.google.com/speed/docs/insights/MinifyResources):
+-   [Minify code and other files](https://developers.google.com/speed/docs/insights/MinifyResources):
     minification generates [files that are smaller to download](https://codeengineered.com/blog/why-minify-javascript/).
     This is especially important for smartphone users.
 -   [Create bundles](https://developers.google.com/web/fundamentals/performance/webpack/):
@@ -366,20 +366,50 @@ for deploying machine learning models in that environment.
     will take for the application to be ready to interact with the user. At
     the time of this writing, the most commonly-used tool for bundling is
     [webpack](https://webpack.js.org/).
--   Version models to force reloads - see section in Google's caching document
+-   Version models to force reloads: when we need to update an application on a
+    server (e.g. we have a new model), we can simply repalce the files and
+    reload the application. Web applications, on the other hand, are cached
+    by the browser on the user's device. To make sure the browser fetches the
+    updated application, we need to [add a unique fingerprint to the file name](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#invalidating_and_updating_cached_responses).
 
-There are tools to automate those steps. A good start is [webpack](link here).
+There are tools to automate those steps. A good overview is available [here](https://stackoverflow.com/questions/35062852/npm-vs-bower-vs-browserify-vs-gulp-vs-grunt-vs-webpack).
 
 ## Appendix
 
 ### Loading TensorFlow.js from a content delivery network (CDN)
 
-> Explain loading TF from a CDN, as used in the tutorials
+In this report we assumed that the TensorFlow.js libraries and models are
+loaded from the local computer.
 
-### Differences from the standard Keras API
+Google maintains the libraries and models in unpkg.com, a [content delivery network (CDN)(https://en.wikipedia.org/wiki/Content_delivery_network). This is how it is loaded in the tutorials:
 
-See https://www.tensorflow.org/js/guide/layers_for_keras_users
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
 
-## TODOs
+For quick tests and experimenations, loading from the CDN is a good way to
+start.
 
--   Add references at the end of each section? Or keep them inline?
+However, sooner or later we will develop our own models. Once we reach this
+point, being able to load to load these models from the local compter (with
+Node.js) will become mandatory.
+
+### Differences from the standard Keras API and behavior
+
+The TensorFlow.js model API is based on the Keras API. Buildind models will
+look familiar from the start. For example, these are the first layers of the
+[CNN digit recognizer tutorial](https://www.tensorflow.org/js/tutorials/training/handwritten_digit_cnn):
+
+    const model = tf.sequential();
+    model.add(
+        tf.layers.conv2d({
+            inputShape: [IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_CHANNELS],
+            kernelSize: 5,
+            filters: 8,
+            strides: 1,
+            activation: 'relu',
+            kernelInitializer: 'varianceScaling',
+        })
+    );
+    model.add(tf.layers.maxPooling2d({ poolSize: [2, 2], strides: [2, 2] }));
+
+The differences start to appear in the behavior of the APIs. There is a good
+summary [in this TensorFlow.js page](https://www.tensorflow.org/js/guide/layers_for_keras_users).
