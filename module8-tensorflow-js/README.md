@@ -5,7 +5,7 @@ constrained environment. In this context, "constrained environment" is in
 comparison with having access to the entire computer's environment.
 
 To do that, we chose to learn more about TensorFlow.js running inside a
-browser. TensorFlow.js can also run on the server (e.g. with [Node.js](https://nodejs.org/en/),
+browser. TensorFlow.js can also run on the server (e.g. with [Node.js](https://nodejs.org/en/)),
 but this is outside of the scope of this document. Here we will concentrate on
 a constrained environment, the browser, and how it is different from developing
 code directly on a computer.
@@ -165,10 +165,39 @@ Putting all pieces together to get the development environment in place:
 
 ## Development workflow
 
--   Don't have access to the disk, so training can't local images locally
--   Develop models in a faster, easier to debug environment (e.g. Python)
+The typical machine learning workflow looks like this:
+
+> > pic with train, test, etc.
+
+This workflow presents a problem when the code is running inside the browser:
+the code does not have easy, fast access to the training data.
+
+When using the same workflow inside a browser, it looks like this:
+
+> > pic with web browser serving training data
+
+The browser is able to cache images (and other resources) once they are
+fetched. However, this is still not as fast as acessing them directly from the
+file system, it is subject to the user control (the user can clear the
+browser's cache at any time) and
+[getting browser caching to work correctly is not trivial](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching).
+
+The typical machine learning workflow is therefore usable only for a small
+amount of training data. For example, when using transfer learning with a
+small set of new samples.
+
+For larger amounts of training data, we need a new workflow: train on a regular
+computer, then convert the mode to use it with TensorFlow.js.
+
+-   Don't have access to the disk, so training can't load images locally
+-   Develop models in a faster, easier to debug environment (e.g. Python or
+    NOde.js)
 -   Export model to TensorFlow.js
 -   Run final tests in TensorFlow.js
+
+### Training on the browser
+
+> > For when needed, how to train on the browser
 
 ## Runtime environment
 
@@ -188,23 +217,14 @@ steps.
 
 There are tools to automated those steps. A good start is [webpack](link here).
 
-## Old - remove later
-
-All tutorials are configured to run with Node.js and npm.
-
-We will run all examples locally, including the TensorFlow.js library itself.
-To do that we need to install the modules locally.
-
--   Install [Node.js](https://nodejs.org/).
--   Install [live-server](https://www.npmjs.com/package/live-server) to act as
-    a local web server (with auto-reload).
--   `cd` to a tutorial directory
--   Run `npm install` to install the modules listed in `package.json`, which
-    includes the TensorFlow.js modules we need.
--   Run `live-server` to open a browser and load `index.html`.
-
 ## Appendix
 
 ### Loading TensorFlow.js from a content delivery network (CDN)
 
 > Explain loading TF from a CDN, as used in the tutorials
+
+### Using TensorFlow.js on a server with Node.js
+
+## TODOs
+
+-   Add references at the end of each section? Or keep them inline?
