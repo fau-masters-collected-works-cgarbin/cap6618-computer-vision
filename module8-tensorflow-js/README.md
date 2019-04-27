@@ -17,20 +17,18 @@ learning experience with Ptyhon or R, TensorFlow and Keras, but little or not
 experience with JavaScript and web development.
 
 The report highlights differences in the development environment, the
-development workflow, the runtime environment and the production environemnt.
+development workflow, the runtime environment and the production environment.
 
 With that in mind, the items investigated for this report are listed below.
-
-> TODO: review these steps once the sections are written.
 
 1. The differences between the TensorFlow.js environment in a browser and the
    typical machine learning environment.
 1. How to set up a productive development environment for TensorFlow.js.
+1. How the development workflow differs from the typical machine learning
+   environment.
 1. What are the differences in the runtime environment, compared to having
    access to the entire computer's environment.
-1. What are the learning resources to get up to speed quickly, assuming
-   previous experience with TensorFlow and Keras, but not with JavaScript and
-   TensorFlow.js.
+1. What are the tools and best practices to deploy the models in production.
 
 The following sections in the report cover each item of the list.
 
@@ -224,8 +222,8 @@ problems as early as possible.
 1.  Attempt to convert it using [tensorflowjs_converter](https://github.com/tensorflow/tfjs-converter).
 
 If conversion works, resume the usual training process to achieve high
-accuracy (or F1 score, or other applicable metric). The goal up to this point
-is just to check if there are no errors in the conversion, beffore committing
+accuracy (or F1 score, or other applicable metrics). The goal up to this point
+is just to check if there are no errors in the conversion, before committing
 to long training times, just to realize the model cannot be converted.
 
 Once the model is trained, we can quantize it. The goal in this step is to
@@ -253,7 +251,7 @@ workflow.
 
 It is also possible to train on a server using [Node.js](https://www.tensorflow.org/js/guide/nodejs).
 This method removes the limitations from the browser environment (we are now
-able to access the file system, for example) and give access to GPUs. The
+able to access the file system, for example) and gives access to GPUs. The
 training performance is [equivalent to using Python and R](https://groups.google.com/a/tensorflow.org/forum/#!topic/tfjs/4qIbyhrDZC0).
 
 However, the actual training loop (model fitting) may be a small part of the
@@ -265,7 +263,7 @@ they use other libraries (Node.js packages) to perform those functions.
 The main driving force for the decision to use Node.js is if you expect to
 write mostly JavaScript code. If so, learning how to code these ancillary
 steps in JavaScript is worthwhile. If you plan to stick to Python or R most of
-the time, training in those environment then converting the trained model to
+the time, training in those environments then converting the trained model to
 TensorFlow.js is more effective in the long run.
 
 ### Using pretrained models as a starting point
@@ -319,19 +317,20 @@ devices:
     unhappy to the point where they give up on your application is to consume
     a lot of battery.
 1.  Latency: more calculations also imply it takes longer to make predictions.
-    Users have expectations on how long they will wait a task to complete. A
-    more responsive applications is obviously better.
+    Users have expectations on how long they will wait for a task to complete.
+    A more responsive application is obviously better.
 1.  Time to download the model: large models take longer to download, of
-    course. This is specially important for smartphone connected via cellular
-    network. Although the browser will cache the model after downloading it,
-    the inital download affects the first use of the application. If it takes
-    too long, users may lose patience and give the first on the first try.
+    course. This is especially important for smartphone connected via a
+    cellular network. Although the browser will cache the model after
+    downloading it, the initial download affects the first use of the
+    application. If it takes too long, users may lose patience and give up on
+    the first try.
 
 If we know the web application is running on a well-configured laptop, with a
 charged battery, connected to a Wi-Fi network, we can afford to use a more
 accurate model, more CPU intensive model. On the other, hand if we know the
-application is running on a smartphone connected via cellular network, we may
-need to fallback to a less powerful model, such as a [MobileNet](https://arxiv.org/abs/1704.04861)
+application is running on a smartphone connected via a cellular network, we may
+need to fall back to a less powerful model, such as a [MobileNet](https://arxiv.org/abs/1704.04861)
 one, that uses less CPU and has smaller latency.
 
 There are two ways to approach this problem:
@@ -342,15 +341,15 @@ There are two ways to approach this problem:
     [already used in other applications](https://developer.mozilla.org/en-US/docs/Web/Guide/Mobile/Separate_sites).
     and Node.js even has a [library to detect the device type](https://www.npmjs.com/package/express-device).
 
-Whenever possibe, pick the first option. The second option results in having to
-maintain two code bases, or at least two models. This will get expensive
-quickly. It is a cost benefit analysis: if the extra accuracy of the large
+Whenever possible, pick the first option. The second option results in having
+to maintain two code bases, or at least two models. This will get expensive
+quickly. It is a cost-benefit analysis: if the extra accuracy of the large
 model is important for the application, then separate models may be justified.
 
 ## Production environment
 
 Once the model is trained and the application is ready to be used, we need
-to put it production. This step is also different from putting a model in
+to put it in production. This step is also different from putting a model in
 production on a server, for internal use (as opposed to being used through web
 browsers).
 
@@ -367,7 +366,7 @@ for deploying machine learning models in that environment.
     the time of this writing, the most commonly-used tool for bundling is
     [webpack](https://webpack.js.org/).
 -   Version models to force reloads: when we need to update an application on a
-    server (e.g. we have a new model), we can simply repalce the files and
+    server (e.g. we have a new model), we can simply replace the files and
     reload the application. Web applications, on the other hand, are cached
     by the browser on the user's device. To make sure the browser fetches the
     updated application, we need to [add a unique fingerprint to the file name](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#invalidating_and_updating_cached_responses).
@@ -385,16 +384,15 @@ Google maintains the libraries and models in unpkg.com, a [content delivery netw
 
     <script src="https://unpkg.com/@tensorflow/tfjs"></script>
 
-For quick tests and experimenations, loading from the CDN is a good way to
-start.
+For quick tests and experiments, loading from the CDN is a good way to start.
 
 However, sooner or later we will develop our own models. Once we reach this
-point, being able to load to load these models from the local compter (with
-Node.js) will become mandatory.
+point, being able to load these models from the local computer (with Node.js)
+will become mandatory.
 
 ### Differences from the standard Keras API and behavior
 
-The TensorFlow.js model API is based on the Keras API. Buildind models will
+The TensorFlow.js model API is based on the Keras API. Building models will
 look familiar from the start. For example, these are the first layers of the
 [CNN digit recognizer tutorial](https://www.tensorflow.org/js/tutorials/training/handwritten_digit_cnn):
 
