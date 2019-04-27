@@ -5,14 +5,17 @@ constrained environment. In this context, "constrained environment" is in
 comparison with having access to the entire computer's environment.
 
 To do that, we chose to learn more about TensorFlow.js running inside a
-browser. TensorFlow.js can also run on the server (e.g. with [Node.js](https://nodejs.org/en/)),
+browser.
+
+TensorFlow.js can also run on the server (e.g. with [Node.js](https://nodejs.org/en/)),
 but this is outside of the scope of this document. Here we will concentrate on
 a constrained environment, the browser, and how it is different from developing
 code directly on a computer.
 
 This report is written from the point of view of someone who has some machine
-learning experience with Ptyhon, TensorFlow and Keras. It highlights
-differences in the development environment and the runtime environment.
+learning experience with Ptyhon or R, TensorFlow and Keras. It highlights
+differences in the development environment, the development workflow and the
+runtime environment.
 
 With that in mind, the items investigated for this report are listed below.
 
@@ -20,10 +23,10 @@ With that in mind, the items investigated for this report are listed below.
 
 1. The differences between the TensorFlow.js environment on a browser and the
    typical machine learning environment.
-1. How to setup a productive development environment for TensorFlow.js.
+1. How to set up a productive development environment for TensorFlow.js.
 1. What are the differences in the runtime environment, compared to having
    access to the entire computer's environment.
-1. What are the learning resources to get up to speed quickly, asssuming
+1. What are the learning resources to get up to speed quickly, assuming
    previous experience with TensorFlow and Keras, but not with JavaScript and
    TensorFlow.js.
 
@@ -31,7 +34,7 @@ The following sections in the report cover each item of the list.
 
 Most of the code in this report is based on the
 [official tutorials](https://www.tensorflow.org/js/tutorials). The tutorials
-have been converted in complete, running examples. They are saved in the
+have been converted into complete, running examples. They are saved in the
 folders named `tfjs-tutorial-...` (in [this GitHub repository](https://github.com/cgarbin/cap6618-computer-vision/tree/master/module8-tensorflow-js),
 if you are reading this report outside of GitHub). All tutorials are configured
 to run locally with Node.js. Please see the development environment section
@@ -96,13 +99,14 @@ a module that automates another difference in the environment: running the
 JavaScript code requires reloading the web page every time any change is made.
 [live-server](https://www.npmjs.com/package/live-server) is a web server that
 automatically reloads the page when a file changes. Sounds like a small detail,
-but manually reloading pages can quickly become time consuming in the
+but manually reloading pages can quickly become-time consuming in the
 development workflow.
 
 Once a web server is in place, we can start the typical development workflow:
 write code, test code, and (inevitably) debug code.
 
-In the follow in sections we will put in place a set of tools for these steps.
+In the following in sections we will put in place a set of tools for these
+steps.
 
 **NOTE:** Some of the items in these sections are opinions, clouded by the
 biases of the author. Whenever possible, the author explains the reason for
@@ -119,7 +123,7 @@ The best defense against that is to have a good code editor, backed by good
 code analysis tools.
 
 -   Editor: [Visual Studio Code](https://code.visualstudio.com/) is a free
-    editor with has a large collection of plugins. Some of them are listed in
+    editor with a large collection of plugins. Some of them are listed in
     the items below.
 -   Code analysis ([linting](<https://en.wikipedia.org/wiki/Lint_(software)>)):
     it takes time to learn all the subtleties of a new language, and JavaScript
@@ -128,7 +132,7 @@ code analysis tools.
     running. [eslint](<https://en.wikipedia.org/wiki/Lint_(software)>) is the
     best linting tool for JavaScript and is available as an extension for
     Visual Studio Code.
--   Code formattting: keep the code consistent and easier to understand. Also
+-   Code formatting: keep the code consistent and easier to understand. Also
     prepares it for publication, e.g. in GitHub. [prettier](https://prettier.io/)
     is currently the most used formatter. Also available as an extension for
     Visual Studio Code.
@@ -177,31 +181,47 @@ When using the same workflow inside a browser, it looks like this:
 > > pic with web browser serving training data
 
 The browser is able to cache images (and other resources) once they are
-fetched. However, this is still not as fast as acessing them directly from the
+fetched. However, this is still not as fast as accessing them directly from the
 file system, it is subject to the user control (the user can clear the
 browser's cache at any time) and
 [getting browser caching to work correctly is not trivial](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching).
 
 The typical machine learning workflow is therefore usable only for a small
 amount of training data. For example, when using transfer learning with a
-small set of new samples.
+small set of new images captured directly in the browser, with the computer's
+camera.
 
 For larger amounts of training data, we need a new workflow: train on a regular
-computer, then convert the mode to use it with TensorFlow.js.
+environment (full computer access), then convert the mode to use it with
+TensorFlow.js. With this workflow we can employ all the tools and techniques
+from traditional machine learning (when we have access to the full machine).
 
--   Don't have access to the disk, so training can't load images locally
--   Develop models in a faster, easier to debug environment (e.g. Python or
-    NOde.js)
--   Export model to TensorFlow.js
--   Run final tests in TensorFlow.js
+> > pic with training, then conversion
+
+Model conversion is done with [`tensorflowjs_converter`](https://www.tensorflow.org/js/guide/conversion).
+
+However, there are some catches:
+
+1. Not all models can be converted. The converter is being improved, but it is
+   not able to convert all models.
+1. Some optimizations for size and performance do not affect the model, but to
+   reduce the model size we need to use [quantization](https://medium.com/tensorflow/introducing-the-model-optimization-toolkit-for-tensorflow-254aca1ba0a3).
+   Quantization may affect accuracy. It requires at least another verification
+   of the model before using it.
+
+### Workflow overview
 
 ### Training on the browser
 
 > > For when needed, how to train on the browser
 
+### Differences from the standard Keras API
+
+See https://www.tensorflow.org/js/guide/layers_for_keras_users
+
 ## Runtime environment
 
-> Can't control what brower is used
+> Can't control what browser is used
 > Could even be mobile phone browser
 > What model to use to cover all cases? Should use MobileNet or try to
 > determine the browser and serve a different model?
