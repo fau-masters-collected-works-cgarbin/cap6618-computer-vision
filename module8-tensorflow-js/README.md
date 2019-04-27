@@ -7,7 +7,7 @@ comparison with having access to the entire computer's environment.
 To do that, we chose to learn more about TensorFlow.js running inside a
 browser.
 
-TensorFlow.js can also run on the server (e.g. with [Node.js](https://nodejs.org/en/)),
+TensorFlow.js can also run on the server (e.g. with [Node.js](https://www.tensorflow.org/js/guide/nodejs)),
 but this is outside of the scope of this document. Here we will concentrate on
 a constrained environment, the browser, and how it is different from developing
 code directly on a computer.
