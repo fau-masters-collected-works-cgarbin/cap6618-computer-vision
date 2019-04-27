@@ -243,13 +243,13 @@ Putting all steps together, this is how the workflow looks like.
 
 > > pic here
 
-### Training with Node.js
+### Training on a server with Node.js
 
 The previous section was written with the assumption that you are familiar and
 comfortable with Python or R. That results in the conversion step in the
 workflow.
 
-It is also possible to train on the server using [Node.js](https://www.tensorflow.org/js/guide/nodejs).
+It is also possible to train on a server using [Node.js](https://www.tensorflow.org/js/guide/nodejs).
 This method removes the limitations from the browser environment (we are now
 able to access the file system, for example) and give access to GPUs. The
 training performance is [equivalent to using Python and R](https://groups.google.com/a/tensorflow.org/forum/#!topic/tfjs/4qIbyhrDZC0).
@@ -261,9 +261,9 @@ training part. These steps are significantly different in JavaScript because
 they use other libraries (Node.js packages) to perform those functions.
 
 The main driving force for the decision to use Node.js is if you expect to
-write mostly JavaScript script. If so, learning how to code these ancialiary
+write mostly JavaScript code. If so, learning how to code these ancillary
 steps in JavaScript is worthwhile. If you plan to stick to Python or R most of
-the time, training in those environment, then converting the trained model to
+the time, training in those environment then converting the trained model to
 TensorFlow.js is more effective in the long run.
 
 ### Using pretrained models as a starting point
@@ -301,10 +301,32 @@ learning Node.js packages to read and manipulate the dataset.
 
 ## Runtime environment
 
-> Can't control what browser is used
-> Could even be mobile phone browser
-> What model to use to cover all cases? Should use MobileNet or try to
-> determine the browser and serve a different model?
+One characteristic of web applications is that they can run on any type of
+device that has a web browser. This can be a blessing or a curse.
+
+For applications that are CPU intensive, like machine learning, not knowing how
+powerful (or weak) the device is has serious implications for the choice of
+model we make.
+
+If we know the web application is running on a well-configured laptop, with a
+charged battery (or connected), connected to a Wi-Fi network, we can afford to
+use a more accurate model. On the other, hand if we know the application is
+running on a smartphone connected via cellular network, we may need to fallback
+to a less powerful model, such as a [MobileNet](https://arxiv.org/abs/1704.04861)
+one.
+
+There are two ways to approach this problem:
+
+1.  Assume the worst: use a small model from the start and serve that model
+    to all devices. This works if the small model has enough accuracy.
+1.  Serve different models, based on the device. This approach is
+    [already used in other applications](https://developer.mozilla.org/en-US/docs/Web/Guide/Mobile/Separate_sites).
+    and Node.js even has a [library to detect the device type](https://www.npmjs.com/package/express-device).
+
+Whenever possibe, pick the first option. The second option results in having to
+maintain two code bases, or at least two models. This will get expensive
+quickly. It is a cost benefit analysis: if the extra accuracy of the large
+model is important for the application, then separate models may be justified.
 
 ## Production environment
 
