@@ -13,9 +13,11 @@ a constrained environment, the browser, and how it is different from developing
 code directly on a computer.
 
 This report is written from the point of view of someone who has some machine
-learning experience with Ptyhon or R, TensorFlow and Keras. It highlights
-differences in the development environment, the development workflow and the
-runtime environment.
+learning experience with Ptyhon or R, TensorFlow and Keras, but little or not
+experience with JavaScript and web development.
+
+The report highlights differences in the development environment, the
+development workflow, the runtime environment and the production environemnt.
 
 With that in mind, the items investigated for this report are listed below.
 
@@ -347,12 +349,23 @@ model is important for the application, then separate models may be justified.
 
 ## Production environment
 
-The sections above cover the development workflow. For a production
-environment, where models are released to the end users, we need a few more
-steps.
+Once the model is trained and the application is ready to be used, we need
+to put it production. This step is also different from putting a model in
+production on a server, for internal use (as opposed to being used through web
+browsers).
 
--   Minimize the code
--   Package (expand this... - webpack)
+These are some of the best practices for web development in general, not only
+for deploying machine learning models in that environment.
+
+-   [Minify code and resources](https://developers.google.com/speed/docs/insights/MinifyResources):
+    minification generates [files that are smaller to download](https://codeengineered.com/blog/why-minify-javascript/).
+    This is especially important for smartphone users.
+-   [Create bundles](https://developers.google.com/web/fundamentals/performance/webpack/):
+    how the code and its resources are split has a significant effect on how
+    long it will take to load the application and, more importantly, how it
+    will take for the application to be ready to interact with the user. At
+    the time of this writing, the most commonly-used tool for bundling is
+    [webpack](https://webpack.js.org/).
 -   Version models to force reloads - see section in Google's caching document
 
 There are tools to automate those steps. A good start is [webpack](link here).
