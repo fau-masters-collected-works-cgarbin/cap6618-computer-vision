@@ -4,8 +4,8 @@ The goal of this work is to understand how to work with machine learning in a
 constrained environment. In this context, "constrained environment" is in
 comparison with having access to the entire computer's environment.
 
-To do that, we chose to learn more about TensorFlow.js running inside a
-browser.
+To do that, we chose to learn more about [TensorFlow.js](https://www.tensorflow.org/js)
+running inside a browser.
 
 TensorFlow.js can also run on a server (e.g. with [Node.js](https://www.tensorflow.org/js/guide/nodejs)),
 but this is outside of the scope of this document. Here we will concentrate on
