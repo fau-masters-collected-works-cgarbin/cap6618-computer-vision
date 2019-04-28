@@ -344,7 +344,43 @@ therefore needed.
 
 Putting all steps together, this is how the workflow looks like.
 
-> > pic here
+![Train then convert](./images/final-training-workflow.png)
+
+<!-- markdownlint-disable -->
+
+[//]: # 'mermaid text for picture above'
+[//]: # 'comment syntax from https://stackoverflow.com/a/20885980'
+
+[//]: # '
+graph LR
+%%
+other(...)
+train(Train the Model)
+fine-tune(Fine tune the Model)
+test(Test the Model)
+save(Save the Model)
+convert(Convert the Model)
+%%
+style convert fill:lightblue
+%%
+subgraph Train in a regular environment
+other --> train
+train --> fine-tune
+fine-tune --> train
+fine-tune --> test
+test --> save
+end
+%%
+subgraph Convert and quantize
+save --> convert
+end
+%%
+subgraph Validate in the browser
+convert --> browser["Final test in the browser"]
+end
+'
+
+<!-- markdownlint-enable -->
 
 ### Training on a server with Node.js
 
