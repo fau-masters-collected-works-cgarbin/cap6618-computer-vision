@@ -234,6 +234,7 @@ When using the same workflow inside a browser, it looks like this:
 [//]: # 'mermaid text for picture above'
 [//]: # 'comment syntax from https://stackoverflow.com/a/20885980'
 
+[//]: # '
 graph LR
 %%
 acquire(Acquire Data)
