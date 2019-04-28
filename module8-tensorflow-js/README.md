@@ -101,7 +101,6 @@ style server fill:lightblue
 application --> browser
 browser --> server
 server --> fs
-%%
 '
 
 <!-- markdownlint-enable -->
@@ -216,7 +215,6 @@ augment --> train
 train --> fine-tune
 fine-tune --> train
 fine-tune --> test
-%%
 '
 
 <!-- markdownlint-enable -->
@@ -226,7 +224,35 @@ the code does not have easy, fast access to the training data.
 
 When using the same workflow inside a browser, it looks like this:
 
-> > pic with web browser serving training data
+![Typical training workflow](./images/web-server-training-workflow.png)
+
+<!-- markdownlint-disable -->
+
+[//]: # 'mermaid text for picture above'
+[//]: # 'comment syntax from https://stackoverflow.com/a/20885980'
+
+graph LR
+%%
+acquire(Acquire Data)
+preprocess(Preprocess Data)
+augment(Augment Data)
+server(Web Server)
+train(Train the Model)
+fine-tune(Fine tune the Model)
+test(Test the Model)
+%%
+style server fill:lightblue
+%%
+acquire --> preprocess
+preprocess --> augment
+augment --> server
+server --> train
+train --> fine-tune
+fine-tune --> train
+fine-tune --> test
+'
+
+<!-- markdownlint-enable -->
 
 The browser is able to cache images (and other resources) once they are
 fetched. However, this is still not as fast as accessing them directly from the
