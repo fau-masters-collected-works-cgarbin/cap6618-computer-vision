@@ -32,13 +32,13 @@ With that in mind, the items investigated for this report are listed below.
 
 The following sections in the report cover each item of the list.
 
-Most of the code in this report is based on the
-[official tutorials](https://www.tensorflow.org/js/tutorials). The tutorials
-have been converted into complete, running examples. They are saved in the
-folders named `tfjs-tutorial-...` (in [this GitHub repository](https://github.com/cgarbin/cap6618-computer-vision/tree/master/module8-tensorflow-js),
-if you are reading this report outside of GitHub). All tutorials are configured
-to run locally with Node.js. Please see the development environment section
-below to get the environment up and running.
+As part of this report, the [official tutorials](https://www.tensorflow.org/js/tutorials)
+have been adapted to run locally. They are saved in the folders named
+`tfjs-tutorial-...` (in [this GitHub repository](https://github.com/cgarbin/cap6618-computer-vision/tree/master/module8-tensorflow-js),
+if you are reading this report outside of GitHub). Please see the
+[development environment section](#putting-it-all-together) below to get the
+environment up and running. Once the environment is in place, you should be
+able to run the tutorials from your computer.
 
 ## Environment differences
 
