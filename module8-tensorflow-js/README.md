@@ -99,8 +99,11 @@ fs(File System)
 style server fill:lightblue
 %%
 application --> browser
+browser --> application
 browser --> server
+server --> browser
 server --> fs
+fs --> server
 '
 
 <!-- markdownlint-enable -->
