@@ -227,7 +227,7 @@ the code does not have easy, fast access to the training data.
 
 When using the same workflow inside a browser, it looks like this:
 
-![Typical training workflow](./images/web-server-training-workflow.png)
+![Web server training workflow](./images/web-server-training-workflow.png)
 
 <!-- markdownlint-disable -->
 
@@ -275,7 +275,34 @@ with TensorFlow.js. With this workflow we can employ all the tools and
 techniques from traditional machine learning (when we have access to the full
 machine).
 
-> > pic with training, then conversion
+![Train then convert](./images/train-convert.png)
+
+<!-- markdownlint-disable -->
+
+[//]: # 'mermaid text for picture above'
+[//]: # 'comment syntax from https://stackoverflow.com/a/20885980'
+
+[//]: # '
+graph LR
+%%
+other(Other training steps...)
+train(Train the Model)
+fine-tune(Fine tune the Model)
+test(Test the Model)
+save(Save the Model)
+convert(Convert the Model)
+%%
+style convert fill:lightblue
+%%
+other --> train
+train --> fine-tune
+fine-tune --> train
+fine-tune --> test
+test --> save
+save --> convert
+'
+
+<!-- markdownlint-enable -->
 
 Model conversion is done with [`tensorflowjs_converter`](https://www.tensorflow.org/js/guide/conversion).
 
