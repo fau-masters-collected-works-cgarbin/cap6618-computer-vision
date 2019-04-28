@@ -81,11 +81,17 @@ import files in JavaScript - the results are similar):
 
     <script src="./node_modules/@tensorflow/tfjs/dist/tf.min.js"></script>
 
-![Web server to access file system](./images/web-server-file-system.svg)
+![Web server to access file system](./images/web-server-file-system.png)
 
-<div style="display:none" class="mermaid">
+<!-- markdownlint-disable -->
+
+[//]: # 'mermaid text for picture above'
+[//]: # 'comment syntax from https://stackoverflow.com/a/20885980'
+
+[//]: # (
 graph LR
-    application(Web Application)
+application(Web Application
+
     browser(Web Browser)
     server(Web Server)
     fs(File System)
@@ -96,7 +102,9 @@ graph LR
     browser --> server
     server --> fs
 
-</div>
+)
+
+<!-- markdownlint-enable -->
 
 Therefore, the development environment needs a web server. There are several
 alternatives for that.
