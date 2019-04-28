@@ -88,7 +88,7 @@ import files in JavaScript - the results are similar):
 [//]: # 'mermaid text for picture above'
 [//]: # 'comment syntax from https://stackoverflow.com/a/20885980'
 
-[//]: # "
+[//]: # '
 graph LR
 
     application(Web Application)
@@ -102,7 +102,7 @@ graph LR
     browser --> server
     server --> fs
 
-"
+'
 
 <!-- markdownlint-enable -->
 
