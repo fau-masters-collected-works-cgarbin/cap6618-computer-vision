@@ -344,7 +344,7 @@ therefore needed.
 
 Putting all steps together, this is how the workflow looks like.
 
-![Train then convert](./images/final-training-workflow.png)
+![Final training workflow](./images/final-training-workflow.png)
 
 <!-- markdownlint-disable -->
 
@@ -354,17 +354,16 @@ Putting all steps together, this is how the workflow looks like.
 [//]: # '
 graph LR
 %%
-other(...)
-train(Train the Model)
-fine-tune(Fine tune the Model)
-test(Test the Model)
-save(Save the Model)
-convert(Convert the Model)
+other(Acquire, preprocess data)
+train(Train)
+fine-tune(Fine tune)
+test(Test)
+save(Save)
+convert1(Convert + quantize option 1)
+convert2(Convert + quantize option 2)
 %%
-style convert fill:lightblue
-%%
-subgraph Train in a regular environment
 other --> train
+subgraph Train the model in a regular environment
 train --> fine-tune
 fine-tune --> train
 fine-tune --> test
@@ -372,11 +371,13 @@ test --> save
 end
 %%
 subgraph Convert and quantize
-save --> convert
+save --> convert1
+save --> convert2
 end
 %%
 subgraph Validate in the browser
-convert --> browser["Final test in the browser"]
+convert1 --> browser["Final test in the browser"]
+convert2 --> browser["Final test in the browser"]
 end
 '
 
