@@ -88,10 +88,10 @@ import files in JavaScript - the results are similar):
 [//]: # 'mermaid text for picture above'
 [//]: # 'comment syntax from https://stackoverflow.com/a/20885980'
 
-[//]: # (
+[//]: # "
 graph LR
-application(Web Application
 
+    application(Web Application)
     browser(Web Browser)
     server(Web Server)
     fs(File System)
@@ -102,7 +102,7 @@ application(Web Application
     browser --> server
     server --> fs
 
-)
+"
 
 <!-- markdownlint-enable -->
 
