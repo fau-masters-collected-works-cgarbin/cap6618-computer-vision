@@ -81,11 +81,22 @@ import files in JavaScript - the results are similar):
 
     <script src="./node_modules/@tensorflow/tfjs/dist/tf.min.js"></script>
 
-> > pic with a web server between the browser and the file system
+![Web server to access file system](./images/web-server-file-system.svg)
 
-<!---
-Use mermaid for the pic
--->
+<div style="display:none" class="mermaid">
+graph LR
+    application(Web Application)
+    browser(Web Browser)
+    server(Web Server)
+    fs(File System)
+
+    style server fill:lightblue
+
+    application --> browser
+    browser --> server
+    server --> fs
+
+</div>
 
 Therefore, the development environment needs a web server. There are several
 alternatives for that.
