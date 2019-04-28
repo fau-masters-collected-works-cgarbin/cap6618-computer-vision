@@ -90,7 +90,7 @@ import files in JavaScript - the results are similar):
 
 [//]: # '
 graph LR
-%%
+%% Need to comment empty lines for this comment style to work
 application(Web Application)
 browser(Web Browser)
 server(Web Server)
@@ -193,7 +193,33 @@ Putting all pieces together to get the development environment in place:
 
 The typical machine learning workflow looks like this:
 
-> > pic with train, test, etc.
+![Typical training workflow](./images/typical-training-workflow.png)
+
+<!-- markdownlint-disable -->
+
+[//]: # 'mermaid text for picture above'
+[//]: # 'comment syntax from https://stackoverflow.com/a/20885980'
+
+[//]: # '
+graph LR
+%%
+acquire(Acquire Data)
+preprocess(Preprocess Data)
+augment(Augment Data)
+train(Train the Model)
+fine-tune(Fine tune the Model)
+test(Test the Model)
+%%
+acquire --> preprocess
+preprocess --> augment
+augment --> train
+train --> fine-tune
+fine-tune --> train
+fine-tune --> test
+%%
+'
+
+<!-- markdownlint-enable -->
 
 This workflow presents a problem when the code is running inside the browser:
 the code does not have easy, fast access to the training data.
