@@ -90,18 +90,18 @@ import files in JavaScript - the results are similar):
 
 [//]: # '
 graph LR
-
-    application(Web Application)
-    browser(Web Browser)
-    server(Web Server)
-    fs(File System)
-
-    style server fill:lightblue
-
-    application --> browser
-    browser --> server
-    server --> fs
-
+%%
+application(Web Application)
+browser(Web Browser)
+server(Web Server)
+fs(File System)
+%%
+style server fill:lightblue
+%%
+application --> browser
+browser --> server
+server --> fs
+%%
 '
 
 <!-- markdownlint-enable -->
