@@ -6,24 +6,39 @@ Most of this work is based on our textbook, [_Hands-on machine learning wiht sci
 
 MNIST digit classification without using neural networks.
 
-Using classifiers from scikit-learn, except for `MLPClassifier`.
+Using only traditional classifiers from scikit-learn (any classifiter, except for `MLPClassifier`).
 
 ## Module 4
 
 MNIST digit classification using denseley-connected neural networks, but not deep learning (e.g. CNNs).
 
+Using scikit-learn `MLPClassifier` for classification and `GridSearchCV` for hyperparameter optimization.
+
 ## Module 5
 
 MNIST digit classification using CNNs.
+
+Comparing densely-connected (`Dense` layers only) with CNNs (`Conv2D` and `MaxPooling2D`), regularization with `Dropout` and `BatchNormalization` and trainig with `EarlyStopping`.
+
+CNNs tested are based on [LeNet-5](http://yann.lecun.com/exdb/lenet/) and [VGG-13](https://arxiv.org/abs/1409.1556).
 
 ## Module 6
 
 Transfer learning and feature extraction with CNNs, including pre-trained CNN models.
 
+Two flavors of transfer learning:
+
+- Feature extraction: remove the dense layers of Keras' [VGG-16](https://keras.io/applications/#vgg16) pretrained on [ImageNet](http://www.image-net.org/), leaving only the convolutional layer. Use these layers for feature extraction and train a dense layer to predict based on the extracted features.
+- Partial retraining: unfreeze the last convolutional layer and retrain it, together with a dense layer for the final prediction.
+
 ## Module 7
 
 More transfer learning, this time experimenting with differen dataset on a pretrained Inception V3 network.
 
+Switch to a more powerful network, based on [Inception V3](https://arxiv.org/abs/1512.00567), and experiment with transfer learning using images from different domains.
+
 ## Module 8 TensorFlow.js
 
-Learning TensorFlow.js in preparation for the class project. The goal is to understand how to use machine learning in a constrained environment (the browser, as opposed to having access to the entire computer's environment).
+Final project, "Machine learning in a constrained environment", where "constrained environment" is an environment where we don't have access to the full resources of a computing environment (full access to the hardware in a laptop, desktop or server).
+
+For this assignment, we picked the web browser as the constrained environment and TensorFlow.js as the means to work in this environment. The project documents the differences in training, testing, debugging, and releasing models in production.
