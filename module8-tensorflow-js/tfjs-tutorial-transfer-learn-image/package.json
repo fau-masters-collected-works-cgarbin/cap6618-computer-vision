@@ -9,11 +9,11 @@
     "author": "",
     "license": "MIT",
     "dependencies": {
-        "@tensorflow-models/knn-classifier": "^1.0.0",
-        "@tensorflow-models/mobilenet": "^1.0.0",
-        "@tensorflow/tfjs": "^1.1.0",
-        "@tensorflow/tfjs-vis": "^1.0.3",
-        "eslint": "^5.16.0",
-        "prettier": "^1.17.0"
+        "@tensorflow-models/knn-classifier": "^1.2.1",
+        "@tensorflow-models/mobilenet": "^2.0.2",
+        "@tensorflow/tfjs": "^1.2.5",
+        "@tensorflow/tfjs-vis": "^1.1.0",
+        "eslint": "^6.1.0",
+        "prettier": "^1.18.2"
     }
 }

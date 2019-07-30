@@ -9,9 +9,9 @@
     "author": "",
     "license": "MIT",
     "dependencies": {
-        "@tensorflow-models/speech-commands": "^0.3.5",
-        "@tensorflow/tfjs": "^1.0.4",
-        "eslint": "^5.16.0",
-        "prettier": "^1.17.0"
+        "@tensorflow-models/speech-commands": "^0.3.9",
+        "@tensorflow/tfjs": "^1.2.5",
+        "eslint": "^6.1.0",
+        "prettier": "^1.18.2"
     }
 }
