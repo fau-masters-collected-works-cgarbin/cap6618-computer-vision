@@ -5,4 +5,6 @@ keras
 tensorflow
 tensorflow-hub
 jupyterlab
+scikit-image
+sklearn
 
