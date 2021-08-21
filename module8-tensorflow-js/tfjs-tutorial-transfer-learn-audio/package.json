@@ -10,8 +10,8 @@
     "license": "MIT",
     "dependencies": {
         "@tensorflow-models/speech-commands": "^0.3.9",
-        "@tensorflow/tfjs": "^1.2.5",
-        "eslint": "^6.1.0",
-        "prettier": "^1.18.2"
+        "@tensorflow/tfjs": "^1.7.4",
+        "eslint": "^6.8.0",
+        "prettier": "^1.19.1"
     }
 }
