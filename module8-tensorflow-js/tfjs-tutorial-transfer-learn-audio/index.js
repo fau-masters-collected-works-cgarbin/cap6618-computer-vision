@@ -3,21 +3,13 @@ let recognizer;
 function predictWord() {
     // Array of words that the recognizer is trained to recognize.
     const words = recognizer.wordLabels();
-    console.log(words);
-    recognizer.listen(
-        ({ scores }) => {
-            // Turn scores into a list of (score,word) pairs.
-            scores = Array.from(scores).map((s, i) => ({
-                score: s,
-                word: words[i],
-            }));
-            // Find the most probable word.
-            scores.sort((s1, s2) => s2.score - s1.score);
-            document.querySelector('#console').textContent = scores[0].word;
-            console.log(scores[0].word + ' prob ' + scores[0].score);
-        },
-        { probabilityThreshold: 0.75 }
-    );
+    recognizer.listen(({ scores }) => {
+        // Turn scores into a list of (score,word) pairs.
+        scores = Array.from(scores).map((s, i) => ({ score: s, word: words[i] }));
+        // Find the most probable word.
+        scores.sort((s1, s2) => s2.score - s1.score);
+        document.querySelector('#console').textContent = scores[0].word;
+    }, { probabilityThreshold: 0.75 });
 }
 
 // One frame is ~23ms of audio.
@@ -31,20 +23,16 @@ function collect(label) {
     if (label == null) {
         return;
     }
-    recognizer.listen(
-        async ({ spectrogram: { frameSize, data } }) => {
-            let vals = normalize(data.subarray(-frameSize * NUM_FRAMES));
-            examples.push({ vals, label });
-            document.querySelector('#console').textContent = `${
-                examples.length
-            } examples collected`;
-        },
-        {
-            overlapFactor: 0.999,
-            includeSpectrogram: true,
-            invokeCallbackOnNoiseAndUnknown: true,
-        }
-    );
+    recognizer.listen(async ({ spectrogram: { frameSize, data } }) => {
+        let vals = normalize(data.subarray(-frameSize * NUM_FRAMES));
+        examples.push({ vals, label });
+        document.querySelector('#console').textContent =
+            `${examples.length} examples collected`;
+    }, {
+        overlapFactor: 0.999,
+        includeSpectrogram: true,
+        invokeCallbackOnNoiseAndUnknown: true
+    });
 }
 
 function normalize(x) {
@@ -67,11 +55,10 @@ async function train() {
         epochs: 10,
         callbacks: {
             onEpochEnd: (epoch, logs) => {
-                document.querySelector('#console').textContent = `Accuracy: ${(
-                    logs.acc * 100
-                ).toFixed(1)}% Epoch: ${epoch + 1}`;
-            },
-        },
+                document.querySelector('#console').textContent =
+                    `Accuracy: ${(logs.acc * 100).toFixed(1)}% Epoch: ${epoch + 1}`;
+            }
+        }
     });
     tf.dispose([xs, ys]);
     toggleButtons(true);
@@ -79,14 +66,12 @@ async function train() {
 
 function buildModel() {
     model = tf.sequential();
-    model.add(
-        tf.layers.depthwiseConv2d({
-            depthMultiplier: 8,
-            kernelSize: [NUM_FRAMES, 3],
-            activation: 'relu',
-            inputShape: INPUT_SHAPE,
-        })
-    );
+    model.add(tf.layers.depthwiseConv2d({
+        depthMultiplier: 8,
+        kernelSize: [NUM_FRAMES, 3],
+        activation: 'relu',
+        inputShape: INPUT_SHAPE
+    }));
     model.add(tf.layers.maxPooling2d({ poolSize: [1, 2], strides: [2, 2] }));
     model.add(tf.layers.flatten());
     model.add(tf.layers.dense({ units: 3, activation: 'softmax' }));
@@ -94,12 +79,12 @@ function buildModel() {
     model.compile({
         optimizer,
         loss: 'categoricalCrossentropy',
-        metrics: ['accuracy'],
+        metrics: ['accuracy']
     });
 }
 
 function toggleButtons(enable) {
-    document.querySelectorAll('button').forEach(b => (b.disabled = !enable));
+    document.querySelectorAll('button').forEach(b => b.disabled = !enable);
 }
 
 function flatten(tensors) {
@@ -132,21 +117,18 @@ function listen() {
     document.getElementById('listen').textContent = 'Stop';
     document.getElementById('listen').disabled = false;
 
-    recognizer.listen(
-        async ({ spectrogram: { frameSize, data } }) => {
-            const vals = normalize(data.subarray(-frameSize * NUM_FRAMES));
-            const input = tf.tensor(vals, [1, ...INPUT_SHAPE]);
-            const probs = model.predict(input);
-            const predLabel = probs.argMax(1);
-            await moveSlider(predLabel);
-            tf.dispose([input, probs, predLabel]);
-        },
-        {
-            overlapFactor: 0.999,
-            includeSpectrogram: true,
-            invokeCallbackOnNoiseAndUnknown: true,
-        }
-    );
+    recognizer.listen(async ({ spectrogram: { frameSize, data } }) => {
+        const vals = normalize(data.subarray(-frameSize * NUM_FRAMES));
+        const input = tf.tensor(vals, [1, ...INPUT_SHAPE]);
+        const probs = model.predict(input);
+        const predLabel = probs.argMax(1);
+        await moveSlider(predLabel);
+        tf.dispose([input, probs, predLabel]);
+    }, {
+        overlapFactor: 0.999,
+        includeSpectrogram: true,
+        invokeCallbackOnNoiseAndUnknown: true
+    });
 }
 
 async function app() {
